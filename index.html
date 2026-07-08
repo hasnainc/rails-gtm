@@ -175,6 +175,34 @@
   .stat .cap{color:var(--text-mut);font-size:.88rem;margin-top:8px}
   .attrib{margin-top:26px;font-size:.84rem;color:var(--text-mut);font-style:italic;border-left:2px solid var(--line);padding-left:14px}
 
+  /* carousel */
+  .carousel{position:relative}
+  .viewport{overflow:hidden;border-radius:18px}
+  .track{display:flex;transition:transform .5s cubic-bezier(.4,0,.2,1)}
+  .slide{flex:0 0 100%;min-width:100%}
+  .slide .casebox{margin-top:0;height:100%}
+  .car-btn{
+    position:absolute;top:50%;transform:translateY(-50%);z-index:5;
+    width:46px;height:46px;border-radius:50%;border:1px solid var(--line);
+    background:rgba(10,14,23,.72);color:#fff;font-size:1.5rem;line-height:1;
+    display:flex;align-items:center;justify-content:center;cursor:pointer;
+    backdrop-filter:blur(6px);transition:background .2s,border-color .2s,transform .15s;
+  }
+  .car-btn:hover{background:var(--signal);color:var(--ink);border-color:var(--signal)}
+  .car-btn:active{transform:translateY(-50%) scale(.94)}
+  .car-btn.prev{left:-14px}
+  .car-btn.next{right:-14px}
+  .dots{display:flex;gap:10px;justify-content:center;margin-top:26px}
+  .dots button{
+    width:9px;height:9px;border-radius:50%;border:none;padding:0;cursor:pointer;
+    background:var(--line);transition:background .2s,width .2s,border-radius .2s;
+  }
+  .dots button.active{background:var(--signal);width:26px;border-radius:6px}
+  @media(max-width:900px){
+    .car-btn.prev{left:6px}
+    .car-btn.next{right:6px}
+  }
+
   /* about */
   .about{background:linear-gradient(180deg,var(--ink-2),var(--ink))}
   .agrid{display:grid;grid-template-columns:0.9fr 1.1fr;gap:56px;align-items:center}
@@ -387,27 +415,90 @@
     <p class="sec-sub">A look at the kind of GTM transformation Rails partners on.</p>
   </div>
   <div class="wrap">
-    <div class="casebox">
-      <div class="inner">
-        <div class="case-tag">Client engagement · Revlyn</div>
-        <h3>Bringing an enterprise sales motion to an Amazon agency that had only ever grown on inbound.</h3>
-        <p class="body">Revlyn — the done-with-you Amazon growth agency built on the team behind Extreme Branding — had a proven delivery engine but no outbound go-to-market. Every client had arrived through content and referral. Rails partnered with Revlyn to design the GTM layer: ICP and qualification, positioning for their Scale and Launch offers, a data-driven discovery motion that shows prospects their own performance gap, and the pipeline infrastructure to make it repeatable.</p>
-        <div class="stats">
-          <div class="stat">
-            <div class="big">$480M+</div>
-            <div class="cap">in client revenue managed by the Extreme Branding delivery engine</div>
+    <div class="carousel">
+      <div class="viewport">
+        <div class="track" id="caseTrack">
+
+          <div class="slide">
+            <div class="casebox">
+              <div class="inner">
+                <div class="case-tag">Client engagement · Amazon growth agency</div>
+                <h3>Bringing an enterprise sales motion to an Amazon agency that had only ever grown on inbound.</h3>
+                <p class="body">A done-with-you Amazon growth agency, built on a delivery team with a deep track record, had a proven engine but no outbound go-to-market — every client had arrived through content and referral. Rails partnered with them to design the GTM layer: ICP and qualification, positioning for their Scale and Launch offers, a data-driven discovery motion that shows prospects their own performance gap, and the pipeline infrastructure to make it repeatable.</p>
+                <div class="stats">
+                  <div class="stat">
+                    <div class="big">$480M+</div>
+                    <div class="cap">in client revenue managed by the delivery team</div>
+                  </div>
+                  <div class="stat">
+                    <div class="big">90%</div>
+                    <div class="cap">client retention on the delivery side — proof the product works</div>
+                  </div>
+                  <div class="stat">
+                    <div class="big">0&nbsp;→&nbsp;1</div>
+                    <div class="cap">building their first outbound sales motion from scratch</div>
+                  </div>
+                </div>
+                <p class="attrib">The $480M+ managed and 90% retention figures reflect the client's delivery team, not Rails. Rails GTM's role is building and scaling their go-to-market engine.</p>
+              </div>
+            </div>
           </div>
-          <div class="stat">
-            <div class="big">90%</div>
-            <div class="cap">client retention on the delivery side — proof the product works</div>
+
+          <div class="slide">
+            <div class="casebox">
+              <div class="inner">
+                <div class="case-tag">Client engagement · Federal cybersecurity</div>
+                <h3>Turning two anchor agencies and idle contract vehicles into a real growth motion.</h3>
+                <p class="body">A federal cybersecurity firm — led by practitioners who co-authored the NIST standards agencies are required to follow — had deep credibility and strong past performance, but revenue was concentrated in two anchor agencies, and powerful contracting vehicles and system-integrator relationships were sitting unused. Rails is building the GTM engine: an agency-expansion targeting model, a vendor co-sell ("Field CTO") motion that converts their credibility into recurring license revenue, and activation of their contract vehicles and partner relationships as live pipeline — sequenced by cash so near-term revenue lands before runway pressure.</p>
+                <div class="stats">
+                  <div class="stat">
+                    <div class="big">NIST</div>
+                    <div class="cap">co-authored the security standards their buyers must comply with</div>
+                  </div>
+                  <div class="stat">
+                    <div class="big">1,000+</div>
+                    <div class="cap">federal risk assessments completed by the client team</div>
+                  </div>
+                  <div class="stat">
+                    <div class="big">2&nbsp;→&nbsp;more</div>
+                    <div class="cap">expanding beyond two anchor agencies with a structured motion</div>
+                  </div>
+                </div>
+                <p class="attrib">Credentials shown are the client's own track record. Rails GTM's role is designing and building their go-to-market motion. Company details anonymized at the client's discretion.</p>
+              </div>
+            </div>
           </div>
-          <div class="stat">
-            <div class="big">0&nbsp;→&nbsp;1</div>
-            <div class="cap">building Revlyn's first outbound sales motion from scratch</div>
+
+          <div class="slide">
+            <div class="casebox">
+              <div class="inner">
+                <div class="case-tag">Client engagement · AI marketing accelerator</div>
+                <h3>Taking an AI-native marketing accelerator to market from its very first customer.</h3>
+                <p class="body">An early-stage marketing accelerator for local small businesses uses AI to drive results its customers can feel on the bottom line — matching local influencers to a business and generating custom, on-brand messaging and marketing collateral. Its first engagement, a neighborhood coffee shop, is the proof case. Rails is partnering from the ground floor to shape the go-to-market: defining the ideal first customers, packaging and pricing an AI-driven service that SMB owners actually understand, and building the repeatable sales motion to turn one proof case into many.</p>
+                <div class="stats">
+                  <div class="stat">
+                    <div class="big">AI-native</div>
+                    <div class="cap">influencer matching + AI-generated marketing collateral</div>
+                  </div>
+                  <div class="stat">
+                    <div class="big">Local SMB</div>
+                    <div class="cap">built for small businesses that need ROI they can see</div>
+                  </div>
+                  <div class="stat">
+                    <div class="big">0&nbsp;→&nbsp;1</div>
+                    <div class="cap">shaping the go-to-market from the first customer forward</div>
+                  </div>
+                </div>
+                <p class="attrib">An early-stage engagement — Rails GTM is helping define and build the company's go-to-market. Client details anonymized at the client's discretion.</p>
+              </div>
+            </div>
           </div>
+
         </div>
-        <p class="attrib">The $480M+ managed and 90% retention figures reflect the track record of Revlyn's delivery team (Extreme Branding). Rails GTM's role is building and scaling Revlyn's go-to-market engine.</p>
       </div>
+      <button class="car-btn prev" id="casePrev" aria-label="Previous story">&#8249;</button>
+      <button class="car-btn next" id="caseNext" aria-label="Next story">&#8250;</button>
+      <div class="dots" id="caseDots"></div>
     </div>
   </div>
 </section>
@@ -462,5 +553,33 @@
   </div>
 </footer>
 
+<script>
+  (function(){
+    var track=document.getElementById('caseTrack');
+    if(!track) return;
+    var slides=track.children, n=slides.length, i=0;
+    var dots=document.getElementById('caseDots');
+    for(var d=0;d<n;d++){
+      var b=document.createElement('button');
+      b.setAttribute('aria-label','Go to story '+(d+1));
+      (function(idx){b.addEventListener('click',function(){go(idx);reset();});})(d);
+      dots.appendChild(b);
+    }
+    function render(){
+      track.style.transform='translateX(-'+(i*100)+'%)';
+      var db=dots.children;
+      for(var k=0;k<db.length;k++){db[k].className=(k===i)?'active':'';}
+    }
+    function go(x){i=(x+n)%n;render();}
+    document.getElementById('casePrev').addEventListener('click',function(){go(i-1);reset();});
+    document.getElementById('caseNext').addEventListener('click',function(){go(i+1);reset();});
+    var timer=setInterval(function(){go(i+1);},8000);
+    function reset(){clearInterval(timer);timer=setInterval(function(){go(i+1);},8000);}
+    var car=track.closest('.carousel');
+    car.addEventListener('mouseenter',function(){clearInterval(timer);});
+    car.addEventListener('mouseleave',function(){reset();});
+    render();
+  })();
+</script>
 </body>
 </html>
