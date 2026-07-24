@@ -377,7 +377,7 @@
       <a class="btn btn-primary" href="https://calendly.com/railsgtm/20min" onclick="return bookSession()">Book a working session</a>
       <a class="btn btn-ghost" href="#approach">See how we work</a>
     </div>
-    <p class="micro">Built by an operator who closed <b>$1M+ enterprise deals</b> at Salesforce, Slack &amp; ServiceNow — now bringing that rigor to founders.</p>
+    <p class="micro">Enterprise-grade go-to-market — <b>proven across leading top-tier tech companies in the Fortune 500</b> — brought to local small businesses, startups, and non-profits.</p>
   </div>
 </section>
 
@@ -582,7 +582,7 @@
         <span class="eyebrow">Who's behind Rails</span>
         <h2 class="sec">Enterprise GTM rigor, in your corner</h2>
         <p>I spent a decade on the enterprise sales teams at the companies that define go-to-market — Salesforce, Slack, and ServiceNow — leading the technical sale on $1M+ deals, capturing new logos in some of the most demanding regulated markets, and helping launch new products to market like GovSlack.</p>
-        <p>I've run discovery in the room, designed the technical win, enabled the sales teams, and built the motion behind the number. Rails GTM is where I bring that enterprise discipline to founders and operators who have a great product but a go-to-market that hasn't caught up. I'll tell you the hard truth early — while it's still cheap to act on — then help you build the engine.</p>
+        <p>I've run discovery in the room, designed the technical win, enabled the sales teams, and built the motion behind the number. Rails GTM is where I bring that same enterprise discipline to local small businesses, startups, and non-profits — organizations with a great product but a go-to-market that hasn't caught up. I'll tell you the hard truth early — while it's still cheap to act on — then help you build the engine.</p>
         <div class="cred">
           <span>Enterprise sales teams — Salesforce, Slack, ServiceNow</span>
           <span>Technical sale leader on $1M+ deals</span>
@@ -644,11 +644,24 @@
     function go(x){i=(x+n)%n;render();}
     document.getElementById('casePrev').addEventListener('click',function(){go(i-1);reset();});
     document.getElementById('caseNext').addEventListener('click',function(){go(i+1);reset();});
-    var timer=setInterval(function(){go(i+1);},8000);
-    function reset(){clearInterval(timer);timer=setInterval(function(){go(i+1);},8000);}
+    var timer=null, INT=5500, seen=false;
+    function play(){clearInterval(timer);timer=setInterval(function(){go(i+1);},INT);}
+    function stop(){clearInterval(timer);}
+    function reset(){play();}
     var car=track.closest('.carousel');
-    car.addEventListener('mouseenter',function(){clearInterval(timer);});
-    car.addEventListener('mouseleave',function(){reset();});
+    car.addEventListener('mouseenter',stop);
+    car.addEventListener('mouseleave',play);
+    if('IntersectionObserver' in window){
+      var io=new IntersectionObserver(function(es){
+        es.forEach(function(e){
+          if(e.isIntersecting){
+            if(!seen){seen=true;setTimeout(function(){go(i+1);play();},1000);}
+            else{play();}
+          }else{stop();}
+        });
+      },{threshold:0.2});
+      io.observe(car);
+    }else{play();}
     var sx=null;
     car.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;},{passive:true});
     car.addEventListener('touchend',function(e){
